@@ -12,12 +12,22 @@ static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
+/*
+ * Base16 dwm template by Daniel Mulford
+ * Solarized Dark scheme by Ethan Schoonover (modified by aramisgithub)
+ */
+static const char col_base00[]      = "#002b36";
+static const char col_base01[]      = "#073642";
+static const char col_base02[]      = "#586e75";
+static const char col_base04[]      = "#839496";
+static const char col_base0C[]      = "#2aa198";
+static const char col_base0D[]      = "#268bd2";
+static char normbgcolor[]           = "#073642"; //col_base01;
+static char normbordercolor[]       = "#586e75"; //col_base02;
+static char normfgcolor[]           = "#839496"; //col_base04;
+static char selfgcolor[]            = "#002b36"; //col_base00;
+static char selbordercolor[]        = "#2aa198"; //col_base0C;
+static char selbgcolor[]            = "#268bd2"; //col_base0D;
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -65,9 +75,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
-
 
 /*
  * Xresources preferences to load at startup
