@@ -78,11 +78,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 
-// for pulse compatible //
-static const char *pulseup[] = { "amixer", "-q", "sset", "Master", "1%+", NULL };
-static const char *pulsedown[]= { "amixer", "-q", "sset", "Master", "1%-", NULL };
-static const char *pulsetoggle[]= { "amixer", "-q", "set", "Master", "+1", "toggle", NULL };
-
 /*
  * Xresources preferences to load at startup
  */
@@ -145,9 +140,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_underscore,                7)
 	TAGKEYS(                        XK_ccedilla,                  8)
 	{ MODKEY|ShiftMask,             XK_q,         quit,           {0} },
-        { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = pulseup } },
-        { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = pulsedown } },
-        { 0,                            XF86XK_AudioMute,        spawn, {.v = pulsetoggle } },
+	// for pulse compatible //
+        { 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --allow-boost -i 3") },
+        { 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 3") },
+        { 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
+        { 0,                            XF86XK_AudioMicMute,     spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 };
 
 /* button definitions */
