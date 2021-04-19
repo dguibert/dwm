@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
+#define XF86MonBrightnessDown 0x1008ff03
+#define XF86MonBrightnessUp 0x1008ff02
 
 /* appearance */
 static unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -145,6 +147,9 @@ static Key keys[] = {
         { 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 3") },
         { 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
         { 0,                            XF86XK_AudioMicMute,     spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	// brightness control
+        { 0,                            XF86MonBrightnessUp,     spawn, SHCMD("light -A 5") },
+        { 0,                            XF86MonBrightnessDown,   spawn, SHCMD("light -U 5") },
 };
 
 /* button definitions */
