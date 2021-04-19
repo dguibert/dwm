@@ -145,6 +145,9 @@ static Key keys[] = {
         { 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 3") },
         { 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
         { 0,                            XF86XK_AudioMicMute,     spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	// brightness control
+        { 0,                            XF86MonBrightnessUp,     spawn, SHCMD("light -A 5") },
+        { 0,                            XF86MonBrightnessDown,   spawn, SHCMD("light -U 5") },
 };
 
 /* button definitions */
