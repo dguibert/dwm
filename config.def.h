@@ -50,6 +50,7 @@ static const Rule rules[] = {
 	{ "QtPass",   NULL,       NULL,       0,            1,           -1 },
 	{ "Pinentry", NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
